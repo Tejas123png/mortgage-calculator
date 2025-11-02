@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortgage Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- Header Section -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="app-title">💰 Mortgage Calculator</h1>
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+            <p class="app-subtitle">Calculate your monthly mortgage payments with ease</p>
+            <div class="step-guide">
+                <span class="step-text">📝 Enter Loan Amount → 📊 Interest Rate → ⏱️ Loan Term</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Form Section -->
+            <section class="form-section card">
+                <h2 class="section-title">Loan Details</h2>
+                
+                <form id="mortgageForm" class="mortgage-form">
+                    <!-- Loan Amount -->
+                    <div class="form-group">
+                        <label for="principal" class="form-label">
+                            Loan Amount (Principal)
+                            <span class="info-icon" data-tooltip="The total amount you want to borrow">ℹ️</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <span class="currency-symbol">₹</span>
+                            <input 
+                                type="number" 
+                                id="principal" 
+                                class="form-input" 
+                                placeholder="3000000" 
+                                min="0"
+                                step="10000"
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Annual Interest Rate -->
+                    <div class="form-group">
+                        <label for="interestRate" class="form-label">
+                            Annual Interest Rate (%)
+                            <span class="info-icon" data-tooltip="The yearly interest rate on your loan">ℹ️</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <input 
+                                type="number" 
+                                id="interestRate" 
+                                class="form-input" 
+                                placeholder="6.5" 
+                                min="0"
+                                max="30"
+                                step="0.1"
+                                required
+                            >
+                            <span class="input-suffix">%</span>
+                        </div>
+                    </div>
+
+                    <!-- Loan Term -->
+                    <div class="form-group">
+                        <label for="loanTerm" class="form-label">
+                            Loan Term (Years)
+                            <span class="info-icon" data-tooltip="Number of years to repay the loan">ℹ️</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <input 
+                                type="number" 
+                                id="loanTerm" 
+                                class="form-input" 
+                                placeholder="20" 
+                                min="1"
+                                max="40"
+                                step="1"
+                                required
+                            >
+                            <span class="input-suffix">years</span>
+                        </div>
+                    </div>
+
+                    <!-- Mortgage Type -->
+                    <div class="form-group">
+                        <label class="form-label">
+                            Mortgage Type
+                            <span class="info-icon" data-tooltip="Fixed-rate keeps the same interest rate; Adjustable-rate may change">ℹ️</span>
+                        </label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="mortgageType" value="fixed" checked>
+                                <span class="radio-text">Fixed-rate</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="mortgageType" value="adjustable">
+                                <span class="radio-text">Adjustable-rate</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Reset Button -->
+                    <button type="button" id="resetBtn" class="btn btn-secondary">
+                        🔄 Reset Calculator
+                    </button>
+                </form>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section">
+                <!-- Result Display -->
+                <div class="card results-card" id="resultsCard">
+                    <h2 class="section-title">Monthly Payment</h2>
+                    <div id="resultsDisplay">
+                        <div class="placeholder-message">
+                            <p>💡 Enter your loan details to see monthly payment calculations</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chart Section -->
+                <div class="card chart-card" id="chartCard">
+                    <h2 class="section-title">Payment Breakdown</h2>
+                    <div class="chart-container">
+                        <canvas id="mortgageChart"></canvas>
+                    </div>
+                    <div id="chartLegend" class="chart-legend"></div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>Built with ❤️ for financial planning • Your data is saved locally</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
